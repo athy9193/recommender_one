@@ -1,0 +1,25 @@
+# create environment, go to the project folder in terminal, run the following command
+# conda env create --file recommender_one.yaml
+# to use this environment in Jupyter notebook, make sure base environment
+# have nb_conda_kernels and ipykernel (using conda install) and 
+# jupyter labextension install jupyterlab-plotly
+
+
+name: 'recommender_one'
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipykernel
+  - scipy
+  - pandas      
+  - matplotlib
+  - seaborn
+  - plotly  
+  - scikit-learn
+  - pip>=20
+  - pyarrow=3.0.* 
+  - black
+  - nbformat
+  - pip:
+

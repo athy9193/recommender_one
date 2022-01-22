@@ -21,5 +21,6 @@ dependencies:
   - pyarrow=3.0.* 
   - black
   - nbformat
+  - scikit-surprise # conda install -c conda-forge scikit-surprise
   - pip:
 

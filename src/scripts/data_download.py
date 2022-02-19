@@ -63,9 +63,8 @@ def get_artist_info(artist_uri):
     return artist_dict
 
 
-def get_track_info_for_playlist(playlist_link):
+def get_track_info_for_playlist(playlist_uri):
     """Get track information for a given playlist"""
-    playlist_uri = get_uri_from_link(playlist_link)
     results = sp.playlist_tracks(playlist_id=playlist_uri, market="US")
 
     tracks = dict(
@@ -83,13 +82,52 @@ def get_track_info_for_playlist(playlist_link):
     return pd.DataFrame(tracks)
 
 
-# Editorial Playlist: Top Songs - Global (Weekly Music Charts)
-playlist_link = (
-    "https://open.spotify.com/playlist/37i9dQZEVXbNG2KDcFcKOF?si=1333723a6eff4b7f"
-)
+# Editorial Playlist: Top Songs - Global (Weekly Music Charts) - uri = "37i9dQZEVXbNG2KDcFcKOF"
 
-a = get_track_info_for_playlist(playlist_link)
+playlist_uri = "37i9dQZF1DXcBWIGoYBM5M"
+playlist_uri = "37i9dQZF1DX4dyzvuaRJ0n"  # mint: The world's biggest dance hits
 
+#%%
+playlist_uri = "1wjKBV0kCtFUS6mwzDBNKD"  # this and that but also this
+a = get_track_info_for_playlist(playlist_uri)
+a
 #%%
 
 # Step 3; Extracting Features from Tracks
+
+track_uri = "46IZ0fSY2mpAiktS3KOqds"  # Easy On Me - Adele
+
+track_sonic_feats = sp.audio_features(track_uri)[0]
+
+
+# Step 4: Generate a list of
+
+#%%
+
+
+def get_playlists(user_type="spotify"):
+    # Gets playlists of a user
+    playlist_results = sp.user_playlists(
+        user_type, limit=50
+    )  # cannot be higher than 50
+    playlists = dict(
+        playlist_name=[],
+        playlist_uri=[],
+        playlist_owner=[],
+        playlist_description=[],
+    )
+    for playlist in playlist_results["items"]:
+        playlists["playlist_name"].append(playlist["name"])
+        playlists["playlist_uri"].append(playlist["id"])
+        playlists["playlist_owner"].append(
+            playlist["owner"]["display_name"]
+        )  # same as user_type?
+        playlists["playlist_description"].append(playlist["description"])
+        # playlist followers?
+
+    return pd.DataFrame(playlists)
+
+
+get_playlists(user_type="radio")
+
+#%%

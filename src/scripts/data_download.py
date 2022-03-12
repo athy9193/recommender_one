@@ -203,7 +203,7 @@ def get_track_data_from_50_playlists_by_user(sp, user_uri="Spotify"):
         temp_track_df["playlist_name"] = row["playlist_name"]
         temp_track_df["playlist_uri"] = row["playlist_uri"]
         track_df = pd.concat([track_df, temp_track_df], ignore_index=True)
-        track_df.to_parquet(f"../../results/track_data_{user_uri}.parquet")
+        track_df.to_parquet(f"../../data/track_data_{user_uri}.parquet")
 
     return track_df
 

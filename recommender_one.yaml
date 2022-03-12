@@ -23,5 +23,6 @@ dependencies:
   - nbformat
   - scikit-surprise # conda install -c conda-forge scikit-surprise
   - spotipy
+  - tqdm # conda install -c conda-forge tqdm
   - pip:
 

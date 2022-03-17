@@ -208,6 +208,14 @@ def get_track_data_from_50_playlists_by_user(sp, user_uri="Spotify"):
     return track_df
 
 
+## Other functions
+def fix_track_zero_track_pop(sp, df):
+    """Fix the track with zero track pop"""
+    for i, row in df.query("track_pop==0").iterrows():
+        df.loc[i, "track_pop"] = sp.track(row["track_uri"])["popularity"]
+    return df
+
+
 #%%
 # TODO: get playlist over time? Trend in music over time?
 # spotify:app:genre:2020 # to generate a group of playlist for 2020 (top track, top artists)
